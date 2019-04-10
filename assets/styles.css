@@ -12,7 +12,8 @@ Red: #A50520 Green: #8BBF3B Black: black; Pink: #F1D8D8 Yellow: #F2CD55*/
 }
 
 .answer:hover {
-  border: 1px solid #f1d8d8;;
+  border: 1px solid #f1d8d8;
+  cursor: pointer;
 }
 
 .app {
@@ -83,6 +84,10 @@ body, html {
   justify-content: center;
   height: 100%;
   width: 100%;
+}
+
+.correct-answer{
+  border: 1px solid #8BBF3B;
 }
 
 h1 {
