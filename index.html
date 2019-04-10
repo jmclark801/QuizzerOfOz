@@ -11,22 +11,29 @@
 
 <body>
   <div class="app">
-    <div class="background"><div></div>
-    <h1>Quizzer Of Oz</h1>
-    <h2>Movie Quiz Game</h2>
-    <h2 id="countdown">12</h2>
-    <div id="content-wrapper">
+    <div class="background">
+      <div></div>
+      <h1>Quizzer Of Oz</h1>
+      <h2>Movie Quiz Game</h2>
+
+      <div id="content-wrapper">
         <div id="content">
-            <button id="button-begin">Begin</button>
-            <p id="question" class="hide"></p>
-            <p id="answer1" class="hide answer"></p>
-            <p id="answer2" class="hide answer"></p>
-            <p id="answer3" class="hide answer"></p>
-            <p id="answer4" class="hide answer"></p>
-        </div> 
+          <h2 id="countdown" class="hide">20</h2>
+          <button id="button-begin">Begin</button>
+          <p id="question" class="hide"></p>
+          <p id="answer1" class="hide answer"></p>
+          <p id="answer2" class="hide answer"></p>
+          <p id="answer3" class="hide answer"></p>
+          <p id="answer4" class="hide answer"></p>
+        </div>
+        <div id="results" class="hide">
+          <p id="results-content">Check out your results below!</p>
+          <p id="results-correct">Correct: </p>
+          <p id="results-incorrect">Incorrect: </p>
+          <button id="button-play-again">Play Again?</button>
+        </div>
+      </div>
     </div>
-      
-  </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="assets/scripts.js"></script>
 </body>

@@ -1,14 +1,11 @@
 
-/* Wicked Colors:
-Red: #A50520 Green: #8BBF3B Black: black; Pink: #F1D8D8 Yellow: #F2CD55*/
-
 @font-face {
   font-family: wickedFont;
   src: url("Fonts/OPTIRubens-Wide.otf");
 }
 
 .answer {
-  padding: 15px
+  padding: 8px
 }
 
 .answer:hover {
@@ -22,7 +19,7 @@ Red: #A50520 Green: #8BBF3B Black: black; Pink: #F1D8D8 Yellow: #F2CD55*/
 }
 
 body, html {
-  
+  background: #A4C552;
   height: 100%;
 }
 
@@ -34,19 +31,17 @@ body, html {
   height: 100%;
 }
 
-#button-begin {
+#button-begin, #button-play-again {
   box-shadow: 0px 1px 0px 0px #f0f7fa;
   background-color:#8BBF3B;
-  border-radius:12px;
-  border:1px solid #A50520;
+  border-radius: 10px;
   display: inline;
-  cursor:pointer;
+  cursor: pointer;
   color:#A50520;
   font-family: wickedFont;
-  font-size:28px;
-  font-weight:bold;
-  opacity: 1;
-  padding:32px 76px;
+  font-size: 48px;
+  opacity: .95;
+  padding: 32px 76px;
   text-decoration:none;
   text-shadow:0px -1px 0px #5b6178;
 }
@@ -64,19 +59,24 @@ body, html {
   display: initial;
 }
 
-#content{
-  background: black;
+#content {
+  align-items: center;  
+  background: rgb(15, 15, 15, 0.5);
+  border-radius: 10px;
   color: #F2CD55;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   font-size: 20px;
-  height: 500px;
+  height: 300px;
+  justify-content: space-around;
   line-height: 1.50;
-  opacity: .9;
-  margin-top: 40px;
+  margin-bottom: 200px;
   overflow: hidden;
   padding: 30px;
   width: 700px;
+  z-index: 0;
 }
-
 
 #content-wrapper {
   align-items: center;
@@ -84,10 +84,15 @@ body, html {
   justify-content: center;
   height: 100%;
   width: 100%;
+  z-index: 1;
 }
 
-.correct-answer{
-  border: 1px solid #8BBF3B;
+#correct-answer {
+  border: 5px solid #8BBF3B;
+}
+
+#correct-answer:hover {
+  border: 5px solid #8BBF3B;
 }
 
 h1 {
@@ -106,6 +111,28 @@ h2 {
   display: none;
 }
 
+#results {
+  align-items: center;  
+  background: rgb(15, 15, 15, 0.5);
+  border-radius: 10px;
+  color: #F2CD55;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 20px;
+  height: 300px;
+  justify-content: space-around;
+  line-height: 1.50;
+  margin-bottom: 200px;
+  overflow: hidden;
+  padding: 30px;
+  width: 700px;
+  z-index: 0;
+}
+
 .show {
   visibility: visible
+}
+
+#question {
+  font-size: 24px;
 }

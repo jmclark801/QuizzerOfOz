@@ -1,7 +1,5 @@
-// Things to do still:
-
 // Global Variables
-var secondsPerQuestion = 12
+var secondsPerQuestion = 20
 var time = secondsPerQuestion
 var questionCounter = 0
 var questions = []
@@ -15,8 +13,6 @@ var intervalID = ""
 function loadQuestions() {
   var request = new XMLHttpRequest()
   request.open('GET', 'https://opentdb.com/api.php?amount=10&category=11&type=multiple', true)
-  //amount has been set into this request to 3 questions so this can be tested. The amount 
-  //should be switched to 10 or more when ready for project submission
   request.onload = function () {
     var data = JSON.parse(this.response);
     console.log(data);
@@ -27,31 +23,39 @@ function loadQuestions() {
   request.send();
 }
 
+loadQuestions();
+
+document.getElementById("button-play-again").addEventListener('click', function () {
+  playGameAgain()
+});
+
 document.getElementById("button-begin").addEventListener('click', function () {
   playGame()
 });
 
 function playGame() {
   intervalID = setInterval(decrementCounter, 1000)
-  beginGame();
-  displayQuestion();
-}
-
-function beginGame() {
-  $('#button-begin').addClass('hide');
+  $('#button-begin').addClass('hide')
+  $('#results').addClass('hide')
+  $('#content').addClass('show')
   correct = 0
   incorrect = 0
   time = secondsPerQuestion
+  displayQuestion();
 }
 
-// The API results include 'HTML entities that need to be decoded. 
-// Turns out that's not super easy to do. Thus this function.
-// Compare the results in console.log to the decoded results
-function decodeResponse(response) {
-  var responseToDecode = response;
-  var encodedResponse = encodeURI(responseToDecode);
-  var decodedResponse = decodeURI(encodedResponse);
-  return decodedResponse
+
+
+function nextQuestion() {
+  if (questionCounter < questions.length - 1) {
+    $("#countdown").text(secondsPerQuestion)
+    time = secondsPerQuestion;
+    questionCounter++
+    console.log("in next Question")
+    displayQuestion();
+  } else {
+    endGame()
+  }
 }
 
 function displayQuestion() {
@@ -61,8 +65,8 @@ function displayQuestion() {
   var correctAnswer = questions[questionCounter].correct_answer
   console.log("Correct Answer = ", correctAnswer)
   answersArray.splice(randomNumber, 0, correctAnswer)
-
-  $('#question').html(decodeResponse(questions[questionCounter].question)).removeClass("hide").addClass("show");
+  $('#countdown').removeClass('hide')
+  $('#question').html(decodeResponse(questions[questionCounter].question)).removeClass("hide");
   for (var i = 0; i < answersArray.length; i++) {
     $('#answer' + (i + 1)).html(decodeResponse(answersArray[i])).removeClass("hide").addClass("show answer")
   }
@@ -71,9 +75,6 @@ function displayQuestion() {
 
 function correctAnswerHandler() {
   correct++;
-  // $(this).addClass('correct-answer')
-  // setInterval(nextQuestion, 500)
-  console.log("You guessed right!")
   nextQuestion();
 }
 
@@ -84,23 +85,19 @@ function incorrectAnswerHandler() {
 
 function endGame() {
   clearInterval(intervalID)
+  $('#content').css('display', 'none')
+  $('#results').removeClass('hide').addClass('show')
+  $('#results-correct').text("Correct Answers: " + correct)
+  $('#results-incorrect').text("Incorrect Answers: " + incorrect)
   console.log("The game is over, play again?")
   console.log("You got: " + incorrect + " wrong! USUX")
   console.log("You got: " + correct + " correct")
 }
 
-function nextQuestion() {
-  if (questionCounter < questions.length - 1) {
-    time = secondsPerQuestion;
-    questionCounter++
-    console.log("in next Question")
-    displayQuestion();
-  } else {
-    endGame()
-  }
+function playGameAgain(){
+  
+  playGame()
 }
-
-loadQuestions();
 
 // *****************
 // Utility Functions
@@ -113,11 +110,23 @@ function decrementCounter() {
   }
 }
 
+// The API results include 'HTML entities that need to be decoded. 
+// Turns out that's not super easy to do. Thus this function.
+// Compare the results in console.log to the decoded results
+function decodeResponse(response) {
+  var responseToDecode = response;
+  var encodedResponse = encodeURI(responseToDecode);
+  var decodedResponse = decodeURI(encodedResponse);
+  return decodedResponse
+}
+
 // Main Click Handler
 $(".answer").on('click', function () {
   if (this.textContent === questions[questionCounter].correct_answer) {
-    correctAnswerHandler()
+    var correctId = (this.id);
+    correctAnswerHandler(correctId)
   } else {
     incorrectAnswerHandler()
   }
 })
+
