@@ -38,12 +38,12 @@ body, html {
   display: inline;
   cursor: pointer;
   color:#A50520;
+  /* color: #D0394A; */
   font-family: wickedFont;
   font-size: 48px;
   opacity: .95;
   padding: 32px 76px;
   text-decoration:none;
-  text-shadow:0px -1px 0px #5b6178;
 }
 
 #button-begin:active {
@@ -68,13 +68,13 @@ body, html {
   flex-direction: column;
   flex-wrap: wrap;
   font-size: 20px;
-  height: 300px;
+  height: 55vh;
   justify-content: space-around;
   line-height: 1.50;
   margin-bottom: 200px;
   overflow: hidden;
   padding: 30px;
-  width: 700px;
+  width: 80vw;
   z-index: 0;
 }
 
@@ -95,6 +95,10 @@ body, html {
   border: 5px solid #8BBF3B;
 }
 
+#countdown { 
+  color: #A4C552
+}
+
 h1 {
   color: #A50520;
   font-size: 100px;
@@ -104,6 +108,13 @@ h1 {
 h2 {
   color: #F2CD55;
   font-size: 24px;
+  text-align: center;
+}
+
+h3 {
+  color: #F2CD55;
+  font-size: 18px;
+  padding-top: 10px;
   text-align: center;
 }
 
@@ -135,4 +146,22 @@ h2 {
 
 #question {
   font-size: 24px;
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 60px;
+  }
+  
+  h2 {
+    font-size: 22px;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 16px;
+    padding-top: 10px;
+    text-align: center;
+  }
+  
 }
